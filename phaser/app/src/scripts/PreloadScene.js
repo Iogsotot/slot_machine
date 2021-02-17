@@ -22,7 +22,6 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image('stopBtn', './assets/images/stopBtn.png');
 
     // sounds
-
     this.load.audio('startGame', './assets/audio/start-button.ogg');
     this.load.audio('stopGame', './assets/audio/stop-button.ogg');
     this.load.audio('theme', './assets/audio/theme.ogg');

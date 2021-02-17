@@ -123,12 +123,6 @@ export default class GameScene extends Phaser.Scene {
     this.slider2 = this.add.sprite(265, 0, 'icons', 0);
     this.slider3 = this.add.sprite(392, 0, 'icons', 0);
 
-    this.input.keyboard.on('keydown-SPACE', () => {
-      this.startAnims(this.slider1, 15);
-      this.startAnims(this.slider2, 10);
-      this.startAnims(this.slider3, 20);
-    }, this);
-
     this.gameBg = this.add.sprite(0, 0, 'gameBg').setOrigin(0);
     this.createText();
     this.window = this.add.sprite(0, 60, 'window').setOrigin(0, 0).setScale(0.35);
