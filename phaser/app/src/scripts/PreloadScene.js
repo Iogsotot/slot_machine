@@ -17,6 +17,8 @@ export default class PreloadScene extends Phaser.Scene {
       frameWidth: 525,
       frameHeight: 600,
     });
+    this.load.image('startBtn', './assets/images/startBtn.png');
+    this.load.image('stopBtn', './assets/images/stopBtn.png');
   }
 
   create() {
