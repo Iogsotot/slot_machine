@@ -61,13 +61,53 @@ export default class GameScene extends Phaser.Scene {
     });
   }
 
+  gameTimeout() {
+    this.timeoutText.setText(`Time: ${this.timeout}`);
+
+    if (this.timeout <= 0) {
+      this.gameStop();
+      this.timer.remove();
+    }
+    this.timeout -= 1;
+  }
+
+  resetTimer() {
+    this.timeout = 20;
+    this.timer.remove();
+  }
+
   createAutoStopTimer() {
-    console.log('я таймер')
+    this.timer = this.time.addEvent({
+      delay: 1000,
+      callback: this.gameTimeout,
+      callbackScope: this,
+      loop: true,
+    });
+  }
+
+  createText() {
+    this.timeoutText = this.add.text(20, 20,
+      '',
+      {
+        fontFamily: 'Arial, sans-serif',
+      });
+  }
+
+  gameStop() {
+    this.resetTimer();
+    if (this.slider1.anims.isPaused || this.slider2.anims.isPaused || this.slider3.anims.isPaused) {
+      this.slider1.anims.resume();
+      this.slider2.anims.resume();
+      this.slider3.anims.resume();
+    } else {
+      this.stopAnims(this.slider1);
+      this.stopAnims(this.slider2);
+      this.stopAnims(this.slider3);
+    }
   }
 
   create() {
-    // this.spin = [];
-    // console.log('create game scene');
+    this.timeout = 20;
 
     this.cameras.main.setBackgroundColor('rgb(255,255,205)');
     this.addAnims();
@@ -82,51 +122,36 @@ export default class GameScene extends Phaser.Scene {
       this.startAnims(this.slider3, 20);
     }, this);
 
-    // this.input.keyboard.on('keydown-P', () => {
-    //   if (this.slider1.anims.isPaused || this.slider2.anims.isPaused || this.slider3.anims.isPaused) {
-    //     this.slider1.anims.resume();
-    //     this.slider2.anims.resume();
-    //     this.slider3.anims.resume();
-    //   } else {
-    //     this.stopAnims(this.slider1);
-    //     this.stopAnims(this.slider2);
-    //     this.stopAnims(this.slider3);
-    //   }
-    // }, this);
-
     // test next frame
     this.input.keyboard.on('keydown-N', () => {
       this.slider1.anims.nextFrame();
     });
 
     this.gameBg = this.add.sprite(0, 0, 'gameBg').setOrigin(0);
+    this.createText();
     this.window = this.add.sprite(0, 60, 'window').setOrigin(0, 0).setScale(0.35);
 
     this.startBtn = new Button(this, 180, 550, 'startBtn');
     this.stopBtn = new Button(this, 350, 550, 'stopBtn');
 
     this.startBtn.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-      // if (this.slider1.anims.isPlaying || this.slider2.anims.isPlaying || this.slider3.anims.isPlaying) {
-      //   return;
-      // }
       this.createAutoStopTimer();
       this.startAnims(this.slider1, 15);
       this.startAnims(this.slider2, 10);
       this.startAnims(this.slider3, 20);
-
-      // this.sounds.startBattle.play();
     }, this);
 
     this.stopBtn.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-      if (this.slider1.anims.isPaused || this.slider2.anims.isPaused || this.slider3.anims.isPaused) {
-        this.slider1.anims.resume();
-        this.slider2.anims.resume();
-        this.slider3.anims.resume();
-      } else {
-        this.stopAnims(this.slider1);
-        this.stopAnims(this.slider2);
-        this.stopAnims(this.slider3);
-      }
+      // if (this.slider1.anims.isPaused || this.slider2.anims.isPaused || this.slider3.anims.isPaused) {
+      //   this.slider1.anims.resume();
+      //   this.slider2.anims.resume();
+      //   this.slider3.anims.resume();
+      // } else {
+      //   this.stopAnims(this.slider1);
+      //   this.stopAnims(this.slider2);
+      //   this.stopAnims(this.slider3);
+      // }
+      this.gameStop();
     }, this);
   }
 }
