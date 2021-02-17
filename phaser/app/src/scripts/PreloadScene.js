@@ -6,23 +6,22 @@ export default class PreloadScene extends Phaser.Scene {
   }
 
   preload() {
-    // this.load.spritesheet('spin', './assets/images/spin.png', {
-    //   frameWidth: 105,
-    //   frameHeight: 1508,
-    // });
-
     this.load.atlas('icons', './assets/images/icons.png', './assets/images/icons.json');
-    // this.load.a
 
     this.load.spritesheet('window', './assets/images/window.png', {
       frameWidth: 1513,
       frameHeight: 1311,
     });
+
+    this.load.spritesheet('gameBg', './assets/images/gameBg.png', {
+      frameWidth: 525,
+      frameHeight: 600,
+    });
   }
 
   create() {
-    const text = this.add.text(20, 20, 'Loading game...', { fontFamily: 'Dimbo' });
+    const text = this.add.text(20, 20, 'Loading game...', { fontFamily: 'Arial, sans-serif' });
     this.scene.start('GameScene');
-    console.log(text.text);
+    // console.log(text.text);
   }
 }

@@ -63,7 +63,7 @@ export default class GameScene extends Phaser.Scene {
   create() {
     this.spin = [];
     console.log('create game scene');
-    this.cameras.main.setBackgroundColor('rgb(34,139,34)');
+    this.cameras.main.setBackgroundColor('rgb(255,255,205)');
     this.addAnims();
 
     this.slider1 = this.add.sprite(138, 0, 'icons', 0);
@@ -82,50 +82,9 @@ export default class GameScene extends Phaser.Scene {
         this.slider2.anims.resume();
         this.slider3.anims.resume();
       } else {
-        // console.log(this.slider1.anims.timeScale);
-        // this.slider1.anims.stop();
-        // this.slider2.anims.stop();
-        // this.slider3.anims.stop();
         this.stopAnims(this.slider1);
         this.stopAnims(this.slider2);
         this.stopAnims(this.slider3);
-
-        // const frame1 = this.slider1.anims.currentFrame.index;
-        // const frame2 = this.slider2.anims.currentFrame.index;
-        // const frame3 = this.slider3.anims.currentFrame.index;
-
-        // if (frame1 % 4 === 0) {
-        //   this.slider1.anims.nextFrame();
-        // } else if (frame1 % 4 === 2) {
-        //   this.slider1.anims.nextFrame();
-        //   this.slider1.anims.nextFrame();
-        //   this.slider1.anims.nextFrame();
-        // } else if (frame1 % 4 === 3) {
-        //   this.slider1.anims.nextFrame();
-        //   this.slider1.anims.nextFrame();
-        // }
-
-        // if (frame2 % 4 === 0) {
-        //   this.slider2.anims.nextFrame();
-        // } else if (frame2 % 4 === 2) {
-        //   this.slider2.anims.nextFrame();
-        //   this.slider2.anims.nextFrame();
-        //   this.slider2.anims.nextFrame();
-        // } else if (frame2 % 4 === 3) {
-        //   this.slider2.anims.nextFrame();
-        //   this.slider2.anims.nextFrame();
-        // }
-
-        // if (frame3 % 4 === 0) {
-        //   this.slider3.anims.nextFrame();
-        // } else if (frame3 % 4 === 2) {
-        //   this.slider3.anims.nextFrame();
-        //   this.slider3.anims.nextFrame();
-        //   this.slider3.anims.nextFrame();
-        // } else if (frame3 % 4 === 3) {
-        //   this.slider3.anims.nextFrame();
-        //   this.slider3.anims.nextFrame();
-        // }
       }
     }, this);
 
@@ -134,22 +93,7 @@ export default class GameScene extends Phaser.Scene {
       this.slider1.anims.nextFrame();
     });
 
-    // ускорение и замедление
-    // this.tweens.add({
-    //   targets: this.slider1.anims,
-    //   timeScale: { from: 0.5, to: 2 },
-    //   ease: 'Sine.inOut',
-    //   // yoyo: true,
-    //   repeat: -1,
-    //   repeatDelay: 1000,
-    //   // hold: 1000,
-    //   duraton: 2000,
-    // });
-
-    this.window = this.add.sprite(0, 60, 'window').setOrigin(0, 0).setScale(0.35).setAlpha(0.3);
+    this.gameBg = this.add.sprite(0, 0, 'gameBg').setOrigin(0);
+    this.window = this.add.sprite(0, 60, 'window').setOrigin(0, 0).setScale(0.35).setAlpha(1);
   }
-
-  // update() {
-  //   // console.log('update');
-  // }
 }
