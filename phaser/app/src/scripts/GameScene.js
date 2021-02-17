@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import Button from './Button.js';
+import Button from './Button';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -111,7 +111,7 @@ export default class GameScene extends Phaser.Scene {
     this.sounds = {
       startGame: this.sound.add('startGame'),
       stopGame: this.sound.add('stopGame'),
-      theme: this.sound.add('theme', { loop: true }),
+      theme: this.sound.add('theme', { loop: true, volume: 0.4 }),
     };
 
     this.cameras.main.setBackgroundColor('rgb(255,255,205)');
