@@ -90,6 +90,7 @@ export default class GameScene extends Phaser.Scene {
       '',
       {
         fontFamily: 'Arial, sans-serif',
+        fontSize: '40px',
       });
   }
 
