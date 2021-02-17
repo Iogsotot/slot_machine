@@ -122,11 +122,6 @@ export default class GameScene extends Phaser.Scene {
       this.startAnims(this.slider3, 20);
     }, this);
 
-    // test next frame
-    this.input.keyboard.on('keydown-N', () => {
-      this.slider1.anims.nextFrame();
-    });
-
     this.gameBg = this.add.sprite(0, 0, 'gameBg').setOrigin(0);
     this.createText();
     this.window = this.add.sprite(0, 60, 'window').setOrigin(0, 0).setScale(0.35);
@@ -142,15 +137,6 @@ export default class GameScene extends Phaser.Scene {
     }, this);
 
     this.stopBtn.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-      // if (this.slider1.anims.isPaused || this.slider2.anims.isPaused || this.slider3.anims.isPaused) {
-      //   this.slider1.anims.resume();
-      //   this.slider2.anims.resume();
-      //   this.slider3.anims.resume();
-      // } else {
-      //   this.stopAnims(this.slider1);
-      //   this.stopAnims(this.slider2);
-      //   this.stopAnims(this.slider3);
-      // }
       this.gameStop();
     }, this);
   }
