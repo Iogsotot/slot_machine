@@ -108,9 +108,16 @@ export default class GameScene extends Phaser.Scene {
 
   create() {
     this.timeout = 20;
+    this.sounds = {
+      startGame: this.sound.add('startGame'),
+      stopGame: this.sound.add('stopGame'),
+      theme: this.sound.add('theme', { loop: true }),
+    };
 
     this.cameras.main.setBackgroundColor('rgb(255,255,205)');
     this.addAnims();
+
+    this.sounds.theme.play();
 
     this.slider1 = this.add.sprite(138, 0, 'icons', 0);
     this.slider2 = this.add.sprite(265, 0, 'icons', 0);
@@ -130,6 +137,7 @@ export default class GameScene extends Phaser.Scene {
     this.stopBtn = new Button(this, 350, 550, 'stopBtn');
 
     this.startBtn.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+      this.sounds.startGame.play();
       this.createAutoStopTimer();
       this.startAnims(this.slider1, 15);
       this.startAnims(this.slider2, 10);
@@ -137,6 +145,7 @@ export default class GameScene extends Phaser.Scene {
     }, this);
 
     this.stopBtn.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+      this.sounds.stopGame.play();
       this.gameStop();
     }, this);
   }

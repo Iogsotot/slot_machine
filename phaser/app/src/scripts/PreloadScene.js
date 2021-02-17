@@ -6,6 +6,7 @@ export default class PreloadScene extends Phaser.Scene {
   }
 
   preload() {
+    // imgs
     this.load.atlas('icons', './assets/images/icons.png', './assets/images/icons.json');
 
     this.load.spritesheet('window', './assets/images/window.png', {
@@ -19,11 +20,16 @@ export default class PreloadScene extends Phaser.Scene {
     });
     this.load.image('startBtn', './assets/images/startBtn.png');
     this.load.image('stopBtn', './assets/images/stopBtn.png');
+
+    // sounds
+
+    this.load.audio('startGame', './assets/audio/start-button.ogg');
+    this.load.audio('stopGame', './assets/audio/stop-button.ogg');
+    this.load.audio('theme', './assets/audio/theme.ogg');
   }
 
   create() {
-    const text = this.add.text(20, 20, 'Loading game...', { fontFamily: 'Arial, sans-serif' });
+    this.add.text(20, 20, 'Loading game...', { fontFamily: 'Arial, sans-serif' });
     this.scene.start('GameScene');
-    // console.log(text.text);
   }
 }
